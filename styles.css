@@ -57,6 +57,15 @@ table {
 }
 
 th {
+  width: 150px;
+}
+
+th, td {
   border: 1px solid black;
   padding: 5px;
 }
+
+.index, .pages {
+  text-align: center;
+}
+
