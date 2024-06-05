@@ -14,7 +14,7 @@ function addBookToLibrary() {
   let userRead = prompt("Have you read the book? (y/n)");
 
   let newBook = new Book(userTitle, userAuthor, userPages, userRead);
-  myLibrary.push(newBook)
+  myLibrary.push(newBook);
 }
 
 function displayPage() {
