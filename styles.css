@@ -44,10 +44,6 @@ img {
   max-inline-size: 100%;
 }
 
-input {
-  appearance: none;
-}
-
 /* NEW CSS */
 
 table {
@@ -67,5 +63,9 @@ th, td {
 
 .index, .pages {
   text-align: center;
+}
+
+dialog {
+  font-size: 1.5rem;
 }
 

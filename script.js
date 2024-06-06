@@ -53,3 +53,36 @@ function displayLibrary() {
     tableLibrary.appendChild(tableRow);
   })
 }
+
+const addBook = document.querySelector("#add-book");
+const formAddBook = document.querySelector(".add-book-form");
+const cancel = document.querySelector(".cancel-form");
+const dialog = document.querySelector("#form-dialog");
+
+addBook.addEventListener("click", () => {
+  dialog.showModal();
+})
+
+cancel.addEventListener("click", () => {
+  dialog.close();
+})
+
+addBookForm.addEventListener("click", () => {
+  dialog.close();
+})
+
+
+
+
+
+let openButton = document.querySelector("[data-open-modal]");
+let closeButton = document.querySelector("[data-close-modal]");
+let dataModal = document.querySelector("[data-modal]");
+
+openButton.addEventListener("click", () => {
+  dataModal.show();
+})
+
+closeButton.addEventListener("click", () => {
+  dataModal.close();
+})
