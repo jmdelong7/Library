@@ -8,16 +8,17 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  let userTitle = prompt("Enter the title of the book.");
-  let userAuthor = prompt("Enter the book's author");
-  let userPages= prompt("Enter the number of pages in the book.");
-  let userRead = prompt("Have you read the book? (y/n)");
+  let userTitle = document.querySelector("#title");
+  let userAuthor = document.querySelector("#author");
+  let userPages= document.querySelector("#pages");
+  let userReadYes = document.querySelector("#read-yes");
+  let userReadNo = document.querySelector("#read-no");
 
   let newBook = new Book(userTitle, userAuthor, userPages, userRead);
   myLibrary.push(newBook);
 }
 
-const tableLibrary = document.querySelector(".table-library");
+const tableLibrary = document.querySelector(".table-library").textContent;
 
 function displayLibrary() {
 
@@ -54,12 +55,13 @@ function displayLibrary() {
   })
 }
 
-const addBook = document.querySelector("#add-book");
-const formAddBook = document.querySelector(".add-book-form");
+const addBookModal = document.querySelector("#add-book");
+const form = document.querySelector("#form");
 const cancel = document.querySelector(".cancel-form");
 const dialog = document.querySelector("#form-dialog");
+const addBookSubmit = document.querySelector("button[type='submit'");
 
-addBook.addEventListener("click", () => {
+addBookModal.addEventListener("click", () => {
   dialog.showModal();
 })
 
@@ -67,22 +69,18 @@ cancel.addEventListener("click", () => {
   dialog.close();
 })
 
-addBookForm.addEventListener("click", () => {
-  dialog.close();
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(form);
+
+  const formDataTitle = formData.get("title");
+  const formDataAuthor = formData.get("author");
+  const formDataPages = formData.get("pages");
+  const formDataRead = (formData.get("read") === "1") ? true : false;
+
+  console.log(formDataTitle, formDataAuthor, formDataPages, formDataRead)  
 })
 
 
 
 
-
-let openButton = document.querySelector("[data-open-modal]");
-let closeButton = document.querySelector("[data-close-modal]");
-let dataModal = document.querySelector("[data-modal]");
-
-openButton.addEventListener("click", () => {
-  dataModal.show();
-})
-
-closeButton.addEventListener("click", () => {
-  dataModal.close();
-})
