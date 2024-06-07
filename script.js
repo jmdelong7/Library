@@ -53,6 +53,12 @@ function displayLibrary() {
   myLibrary.forEach((b) => {
     const tableRow = document.createElement('tr');
     tableRow.classList.add("book")
+
+    const bookRemove = document.createElement('td');
+    bookRemove.classList.add("remove");
+    const bookRemoveBtn = document.createElement('button')
+    bookRemoveBtn.textContent = "Remove";
+    bookRemove.appendChild(bookRemoveBtn);
     
     const bookIndex = document.createElement('td');
     bookIndex.classList.add("index");
@@ -74,6 +80,7 @@ function displayLibrary() {
     bookRead.classList.add("read");
     bookRead.textContent = b.read;
 
+    tableRow.appendChild(bookRemove);
     tableRow.appendChild(bookIndex)
     tableRow.appendChild(bookTitle);
     tableRow.appendChild(bookAuthor);
