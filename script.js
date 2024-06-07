@@ -7,14 +7,8 @@ function Book(title, author, pages, read) {
   this.read = read ? "I've read this book." : "I've yet to read this book."
 }
 
-function addBookToLibrary() {
-  let userTitle = document.querySelector("#title");
-  let userAuthor = document.querySelector("#author");
-  let userPages= document.querySelector("#pages");
-  let userReadYes = document.querySelector("#read-yes");
-  let userReadNo = document.querySelector("#read-no");
-
-  let newBook = new Book(userTitle, userAuthor, userPages, userRead);
+function addBookToLibrary(userTitle, userAuthor, userPages, userRead) {
+  const newBook = new Book(userTitle, userAuthor, userPages, userRead);
   myLibrary.push(newBook);
 }
 
@@ -78,7 +72,7 @@ form.addEventListener("submit", (event) => {
   const formDataPages = formData.get("pages");
   const formDataRead = (formData.get("read") === "1") ? true : false;
 
-  console.log(formDataTitle, formDataAuthor, formDataPages, formDataRead)  
+  console.log(formDataTitle, formDataAuthor, formDataPages, formDataRead)  ;
 })
 
 
