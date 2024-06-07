@@ -38,6 +38,8 @@ form.addEventListener("submit", (event) => {
   addBookToLibrary(formDataTitle, formDataAuthor, formDataPages, formDataRead);
 
   form.reset();
+
+  displayLibrary();
 })
 
 const tableLibrary = document.querySelector(".table-library");
@@ -88,7 +90,13 @@ function displayLibrary() {
     tableRow.appendChild(bookRead);
 
     tableLibrary.appendChild(tableRow);
+
+    removeBook(bookRemoveBtn, tableRow);
   })
+}
+
+function removeBook(removeBookBtn, tableRow) {
+  removeBookBtn.addEventListener("click", tableLibrary.removeChild(tableRow));
 }
 
 
