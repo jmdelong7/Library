@@ -12,7 +12,35 @@ function addBookToLibrary(userTitle, userAuthor, userPages, userRead) {
   myLibrary.push(newBook);
 }
 
-const tableLibrary = document.querySelector(".table-library").textContent;
+const addBookModal = document.querySelector("#add-book");
+const form = document.querySelector("#form");
+const cancel = document.querySelector(".cancel-form");
+const dialog = document.querySelector("#form-dialog");
+const addBookSubmit = document.querySelector("button[type='submit'");
+
+addBookModal.addEventListener("click", () => {
+  dialog.showModal();
+})
+
+cancel.addEventListener("click", () => {
+  dialog.close();
+})
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(form);
+
+  const formDataTitle = formData.get("title");
+  const formDataAuthor = formData.get("author");
+  const formDataPages = formData.get("pages");
+  const formDataRead = (formData.get("read") === "1") ? true : false;
+  
+  addBookToLibrary(formDataTitle, formDataAuthor, formDataPages, formDataRead);
+
+  form.reset();
+})
+
+const tableLibrary = document.querySelector(".table-library");
 
 function displayLibrary() {
 
@@ -21,7 +49,7 @@ function displayLibrary() {
     
     const bookIndex = document.createElement('td');
     bookIndex.classList.add("index");
-    bookIndex.textContent = myLibrary.indexOf(b + 1);
+    bookIndex.textContent = myLibrary.indexOf(b) + 1;
     
     const bookTitle = document.createElement('td');
     bookTitle.classList.add("title");
@@ -48,33 +76,6 @@ function displayLibrary() {
     tableLibrary.appendChild(tableRow);
   })
 }
-
-const addBookModal = document.querySelector("#add-book");
-const form = document.querySelector("#form");
-const cancel = document.querySelector(".cancel-form");
-const dialog = document.querySelector("#form-dialog");
-const addBookSubmit = document.querySelector("button[type='submit'");
-
-addBookModal.addEventListener("click", () => {
-  dialog.showModal();
-})
-
-cancel.addEventListener("click", () => {
-  dialog.close();
-})
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(form);
-
-  const formDataTitle = formData.get("title");
-  const formDataAuthor = formData.get("author");
-  const formDataPages = formData.get("pages");
-  const formDataRead = (formData.get("read") === "1") ? true : false;
-
-  console.log(formDataTitle, formDataAuthor, formDataPages, formDataRead)  ;
-})
-
 
 
 
