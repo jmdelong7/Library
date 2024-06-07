@@ -7,11 +7,6 @@ function Book(title, author, pages, read) {
   this.read = read ? "I've read this book." : "I've yet to read this book."
 }
 
-function addBookToLibrary(userTitle, userAuthor, userPages, userRead) {
-  const newBook = new Book(userTitle, userAuthor, userPages, userRead);
-  myLibrary.push(newBook);
-}
-
 const addBookModal = document.querySelector("#add-book");
 const form = document.querySelector("#form");
 const cancel = document.querySelector(".cancel-form");
@@ -25,6 +20,11 @@ addBookModal.addEventListener("click", () => {
 cancel.addEventListener("click", () => {
   dialog.close();
 })
+
+function addBookToLibrary(userTitle, userAuthor, userPages, userRead) {
+  const newBook = new Book(userTitle, userAuthor, userPages, userRead);
+  myLibrary.push(newBook);
+}
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -41,11 +41,18 @@ form.addEventListener("submit", (event) => {
 })
 
 const tableLibrary = document.querySelector(".table-library");
+const tableHeader = document.querySelector(".table-header");
 
 function displayLibrary() {
 
+  const books = document.querySelectorAll("tr.book");
+  for (const book of books) {
+    book.parentNode.removeChild(book);
+  };  
+
   myLibrary.forEach((b) => {
     const tableRow = document.createElement('tr');
+    tableRow.classList.add("book")
     
     const bookIndex = document.createElement('td');
     bookIndex.classList.add("index");
