@@ -105,11 +105,60 @@ th, td {
   padding: 5px;
 }
 
-.index, .pages, .remove, .change {
-  text-align: center;
+dialog{
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.144);
+
 }
 
-dialog {
-  font-size: 1.5rem;
+form {
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  font-weight: bold;
+  padding: 15px;
 }
+
+form > :nth-child(-n+3) {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  padding: 10px 0;
+}
+
+legend {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+fieldset {
+  margin: 10px 0 10px 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 0;
+}
+
+fieldset > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+input[type="radio"] {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
+
 
