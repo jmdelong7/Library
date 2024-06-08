@@ -85,16 +85,18 @@ function displayLibrary() {
     bookRead.classList.add("read", indexClassName);
     bookRead.textContent = b.read;
     
+    const bookChange = document.createElement('td');
     const changeButton = document.createElement('button');
     bookRead.classList.add("change", indexClassName);
     changeButton.textContent = "Change";
+    bookChange.appendChild(changeButton)
 
     tableRow.appendChild(bookRemove);
     tableRow.appendChild(bookTitle);
     tableRow.appendChild(bookAuthor);
     tableRow.appendChild(bookPages);
     tableRow.appendChild(bookRead);
-    tableRow.appendChild(changeButton);
+    tableRow.appendChild(bookChange);
 
     tableLibrary.appendChild(tableRow);
 
