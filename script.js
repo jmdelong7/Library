@@ -68,11 +68,7 @@ function displayLibrary() {
     const removeButton = document.createElement('button');
     removeButton.textContent = "Remove";
     bookRemove.appendChild(removeButton);
-    
-    const bookIndex = document.createElement('td');
-    bookIndex.classList.add("index", indexClassName);
-    bookIndex.textContent = libraryIndex;
-    
+        
     const bookTitle = document.createElement('td');
     bookTitle.classList.add("title", indexClassName);
     bookTitle.textContent = b.title;
@@ -94,7 +90,6 @@ function displayLibrary() {
     changeButton.textContent = "Change";
 
     tableRow.appendChild(bookRemove);
-    tableRow.appendChild(bookIndex)
     tableRow.appendChild(bookTitle);
     tableRow.appendChild(bookAuthor);
     tableRow.appendChild(bookPages);
