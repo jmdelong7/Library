@@ -7,6 +7,10 @@ function Book(title, author, pages, read) {
   this.read = read ? "I've read this book." : "I've yet to read this book."
 }
 
+Book.prototype.changeReadStatus = function (read) {
+  this.read = read ? "I've read this book." : "I've yet to read this book."
+}
+
 const addBookModal = document.querySelector("#add-book");
 const form = document.querySelector("#form");
 const cancel = document.querySelector(".cancel-form");
@@ -55,17 +59,18 @@ function displayLibrary() {
 
   myLibrary.forEach((b) => {
     const tableRow = document.createElement('tr');
-    tableRow.classList.add("book")
+    tableRow.classList.add("book");
+    libraryIndex = myLibrary.indexOf(b) + 1;
 
     const bookRemove = document.createElement('td');
     bookRemove.classList.add("remove");
-    const bookRemoveBtn = document.createElement('button')
-    bookRemoveBtn.textContent = "Remove";
-    bookRemove.appendChild(bookRemoveBtn);
+    const removeButton = document.createElement('button');
+    removeButton.textContent = "Remove";
+    bookRemove.appendChild(removeButton);
     
     const bookIndex = document.createElement('td');
     bookIndex.classList.add("index");
-    bookIndex.textContent = myLibrary.indexOf(b) + 1;
+    bookIndex.textContent = libraryIndex;
     
     const bookTitle = document.createElement('td');
     bookTitle.classList.add("title");
@@ -82,6 +87,9 @@ function displayLibrary() {
     const bookRead = document.createElement('td');
     bookRead.classList.add("read");
     bookRead.textContent = b.read;
+    const changeButton = document.createElement('button');
+    changeButton.textContent = "Change";
+    bookRead.appendChild(changeButton);
 
     tableRow.appendChild(bookRemove);
     tableRow.appendChild(bookIndex)
@@ -92,15 +100,33 @@ function displayLibrary() {
 
     tableLibrary.appendChild(tableRow);
 
-    removeBook(bookRemoveBtn, tableRow);
+    removeBook(removeButton, tableRow);
+    changeBookReadStatus(changeButton, b);
   })
 }
 
 function removeBook(bookRemoveBtn, tableRow) {
   bookRemoveBtn.addEventListener("click", () => {
-    tableLibrary.removeChild(tableRow)
+    tableLibrary.removeChild(tableRow);
   });
 }
+
+function changeBookReadStatus(changeButton, book) {
+  changeButton.addEventListener("click", () => {
+    changeReadStatus(book);
+    bookRead.textContent = b.read;
+  });
+}
+
+function changeReadStatus(book) {
+  let bookReadText = book.read; // I've read or I've not read
+  book.changeReadStatus(false); // I've not read
+  if (bookReadText === book.read) { // If both false
+    book.changeReadStatus(true); // Change true
+  } else {book.changeReadStatus(false)} // Else change false
+}
+
+
 
 
 
