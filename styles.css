@@ -46,14 +46,30 @@ img {
 
 /* NEW CSS */
 
+body {
+  background-color: rgb(48, 48, 48);
+  color: rgb(230, 230, 230);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 2rem;
+  padding: 10px;
+}
+
 table {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   border: 1px solid black;
   border-collapse: collapse;
+  margin: 0.5rem;
 }
 
 th {
-  width: 150px;
+  width: 125px;
 }
 
 th, td {
