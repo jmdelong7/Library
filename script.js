@@ -40,6 +40,7 @@ form.addEventListener("submit", (event) => {
   form.reset();
 
   displayLibrary();
+
 })
 
 const tableLibrary = document.querySelector(".table-library");
@@ -95,8 +96,10 @@ function displayLibrary() {
   })
 }
 
-function removeBook(removeBookBtn, tableRow) {
-  removeBookBtn.addEventListener("click", tableLibrary.removeChild(tableRow));
+function removeBook(bookRemoveBtn, tableRow) {
+  bookRemoveBtn.addEventListener("click", () => {
+    tableLibrary.removeChild(tableRow)
+  });
 }
 
 
