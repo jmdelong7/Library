@@ -59,17 +59,45 @@ body {
 .page-title {
   font-size: 2rem;
   padding: 10px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+#add-book {
+  margin-bottom: 10px;
+}
+
+td button {
+  width: 100px;
+}
+
+button {
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  background-color: rgb(15, 15, 15);
+  color: rgb(230, 230, 230);
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.144);
+  font-weight: bold;
+  cursor: pointer;
 }
 
 table {
   font-size: 1.25rem;
-  border: 1px solid black;
   border-collapse: collapse;
   margin: 0.5rem;
 }
 
-th {
-  width: 125px;
+.header-title, 
+.header-author, 
+.header-pages, 
+.header-pages {
+  width: 150px;
+}
+
+.header-remove, .header-change {
+  width: 100px;
 }
 
 th, td {
@@ -77,7 +105,7 @@ th, td {
   padding: 5px;
 }
 
-.index, .pages {
+.index, .pages, .remove, .change {
   text-align: center;
 }
 

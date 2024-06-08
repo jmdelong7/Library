@@ -87,7 +87,7 @@ function displayLibrary() {
     
     const bookChange = document.createElement('td');
     const changeButton = document.createElement('button');
-    bookRead.classList.add("change", indexClassName);
+    bookChange.classList.add("change", indexClassName);
     changeButton.textContent = "Change";
     bookChange.appendChild(changeButton)
 
