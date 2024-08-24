@@ -1,3 +1,30 @@
+class Book1 {
+  constructor(title, author, numOfPages, hasRead) {
+    this.title = title
+    this.author = author
+    this.numOfPages = numOfPages
+    this.hasRead = hasRead
+    
+    this.changeHasRead = function() {
+      this.hasRead = !this.hasRead
+    }
+  }
+}
+
+class Library {
+  constructor() {
+    this.library = []
+  }
+
+  addBookRow(book) {
+    this.library.push(book)
+  }
+
+  removeBookRow(book) {
+
+  }
+}
+
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
