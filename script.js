@@ -13,15 +13,15 @@ class Book1 {
 
 class Library {
   constructor() {
-    this.library = []
+    this.books = []
   }
 
-  addBookRow(book) {
-    this.library.push(book)
+  addBook(book) {
+    this.books.push(book)
   }
 
-  removeBookRow(book) {
-
+  removeBook(title) {
+    this.books = this.books.filter(book => book.title !== title)
   }
 }
 
