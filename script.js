@@ -1,13 +1,13 @@
-class Book1 {
+class Book {
   constructor(title, author, numOfPages, hasRead) {
     this.title = title
     this.author = author
     this.numOfPages = numOfPages
     this.hasRead = hasRead
-    
-    this.changeHasRead = function() {
-      this.hasRead = !this.hasRead
-    }
+  }
+
+  changeHasRead() {
+    this.hasRead = !this.hasRead
   }
 }
 
@@ -20,59 +20,68 @@ class Library {
     this.books.push(book)
   }
 
-  removeBook(title) {
-    this.books = this.books.filter(book => book.title !== title)
+  removeBook(index) {
+    this.books = this.books.filter(book => this.books.indexOf(book) !== index)
   }
 }
 
-const myLibrary = [];
+class FormHandler {
+  constructor(formData) {
+    this.formData = formData
+  }
 
-function Book(title, author, pages, read) {
-  this.title = title,
-  this.author = author,
-  this.pages = pages,
-  this.read = read ? "I've read this book." : "I've yet to read this book."
+  getFormEntries() {
+    const formEntries = {}
+    for (let [key, value] of this.formData.entries()) {
+      formEntries[key] = value
+    }
+    return formEntries
+  }
+
 }
 
-Book.prototype.changeReadStatus = function (read) {
-  this.read = read ? "I've read this book." : "I've yet to read this book."
+class BookFormHandler {
+  constructor(formId) {
+    this.bookForm = document.getElementById(formId)
+  }
+
+  getFormDataAsMap() {
+    const formData = new FormData(this.bookForm)
+    const formDataMap = new Map()
+    for (const [key, value] of formData.entries()) {
+      formDataMap.set(key, value)
+    }
+    return formDataMap
+  }
+
+  onSubmit(callback) {
+    this.bookForm.addEventListener("submit", (event) => {
+      event.preventDefault()
+      const formData = this.getFormDataAsMap()
+      callback(formData)
+    })
+  }
 }
 
-const addBookModal = document.querySelector("#add-book");
-const form = document.querySelector("#form");
-const cancel = document.querySelector(".cancel-form");
-const dialog = document.querySelector("#form-dialog");
-const addBookSubmit = document.querySelector("button[type='submit'");
+class PageController {
+  constructor(library) {
+    this.library = library
+    this.addBookButton = document.getElementById("add-book")
+    this.cancelButton = document.getElementById("cancel-form")
+    this.dialog = document.getElementById("form-dialog")
 
-addBookModal.addEventListener("click", () => {
-  dialog.showModal();
-})
+    this.addBookButton.addEventListener("click", () => {
+      dialog.showModal()
+    })
 
-cancel.addEventListener("click", () => {
-  dialog.close();
-})
-
-function addBookToLibrary(userTitle, userAuthor, userPages, userRead) {
-  const newBook = new Book(userTitle, userAuthor, userPages, userRead);
-  myLibrary.push(newBook);
+    this.cancelButton.addEventListener("click", () => {
+      dialog.close()
+    })
+  }
 }
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(form);
-
-  const formDataTitle = formData.get("title");
-  const formDataAuthor = formData.get("author");
-  const formDataPages = formData.get("pages");
-  const formDataRead = (formData.get("read") === "1") ? true : false;
-  
-  addBookToLibrary(formDataTitle, formDataAuthor, formDataPages, formDataRead);
-
-  form.reset();
-
-  displayLibrary();
-
-})
+const library = new Library()
+const PageController = PageController(library)
 
 const tableLibrary = document.querySelector(".table-library");
 const tableHeader = document.querySelector(".table-header");
