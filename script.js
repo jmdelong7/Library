@@ -26,14 +26,16 @@ class Library {
 }
 
 class FormHandler {
-  constructor(formId) {
+  constructor(formId, library) {
     this.formElement = document.getElementById(formId)
+    this.library = library
+    this.onSubmit()
   }
   
   getFormEntries(formData) {
-    const formEntries = {}
-    for (let [key, value] of formData.entries()) {
-      formEntries[key] = value
+    const formEntries = []
+    for (let pair of formData.entries()) {
+      formEntries.push(pair[1])
     }
     return formEntries
   }
@@ -42,17 +44,29 @@ class FormHandler {
     this.formElement.addEventListener("submit", (event) => {
       event.preventDefault()
       let formData = new FormData(this.formElement)
-      formData = this.getFormEntries(formData) 
-      console.log(formData.title)
+      this.addBookToLibrary(this.makeBookFromForm(formData))
+      this.formElement.reset()
     })
+  }
+
+  makeBookFromForm(formData) {
+    let formDataEntries = this.getFormEntries(formData)
+    return new Book(...formDataEntries)
+  }
+
+  addBookToLibrary(book) {
+    this.library.addBook(book)
   }
 }
 
 class ModalHandler {
-  constructor(addBookButtonElement, dialogElement, cancelButtonElement) {
+  constructor(addBookButtonElement, dialogElement, cancelButtonElement, submitButtonElement) {
     this.addBookButton = document.getElementById(addBookButtonElement)
     this.dialogElement = document.getElementById(dialogElement)
     this.cancelButton = document.getElementById(cancelButtonElement)
+    
+    this.addBookListener()
+    this.cancelButtonListener()
   }
 
   addBookListener() {
@@ -69,11 +83,9 @@ class ModalHandler {
 
 }
 
-const modal = new ModalHandler("add-book", "form-dialog", "cancel-form")
-modal.addBookListener()
-modal.cancelButtonListener()
-const formData = new FormHandler("book-form")
-formData.onSubmit()
+const modal = new ModalHandler("add-book", "form-dialog", "cancel-form", "submit-form")
+const library = new Library()
+const formData = new FormHandler("book-form", library)
 
 /* 
 
@@ -93,28 +105,7 @@ formData.onSubmit()
 */
 
 
-class BookFormHandler {
-  constructor(formId) {
-    this.bookForm = document.getElementById(formId)
-  }
 
-  getFormDataAsMap() {
-    const formData = new FormData(this.bookForm)
-    const formDataMap = new Map()
-    for (const [key, value] of formData.entries()) {
-      formDataMap.set(key, value)
-    }
-    return formDataMap
-  }
-
-  onSubmit(callback) {
-    this.bookForm.addEventListener("submit", (event) => {
-      event.preventDefault()
-      const formData = this.getFormDataAsMap()
-      callback(formData)
-    })
-  }
-}
 
 
 function displayLibrary() {
