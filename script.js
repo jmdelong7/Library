@@ -83,8 +83,8 @@ class ModalHandler {
 }
 
 class LibraryDisplay {
-  constructor(libraryObj, libraryID) {
-    this.libraryObj = libraryObj
+  constructor(library, libraryID) {
+    this.library = library
     this.libraryElement = document.getElementById(libraryID)
   }
 
@@ -92,18 +92,36 @@ class LibraryDisplay {
     return document.createElement('td')
   }
 
+  
   createBookData(book) {
-    const bookElement = {}
+    const bookElements = {}
+    const removeCol = this.createTableColum().appendChild(
+      document.createElement('button')
+    )
+    removeCol.textContent = "Remove"
+    bookElements["remove"] = removeCol
+    
     for (let [key, value] of book) {
       const tData = this.createTableColumn()
       tData.textContent = value
-      bookElement[key] = tData
+      bookElements[key] = tData
     }
-    const changeCol = createTableColumn().appendChild(
+    
+    const changeCol = this.createTableColumn().appendChild(
       document.createElement('button')
     )
     changeCol.textContent = "Change"
-    bookElement["change"] = changeCol
+    bookElements["change"] = changeCol
+    
+    return bookElements
+  }
+  
+  createTableRow(bookElements) {
+    const tableRow = document.createElement('tr')
+    Object.keys(bookElements).forEach( (key) => {
+      this.tableRow.appendChild(bookElement[key])
+    })
+    this.libraryElement.appendChild(tableRow)
   }
 }
 
