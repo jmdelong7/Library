@@ -26,19 +26,72 @@ class Library {
 }
 
 class FormHandler {
-  constructor(formData) {
-    this.formData = formData
+  constructor(formId) {
+    this.formElement = document.getElementById(formId)
   }
-
-  getFormEntries() {
+  
+  getFormEntries(formData) {
     const formEntries = {}
-    for (let [key, value] of this.formData.entries()) {
+    for (let [key, value] of formData.entries()) {
       formEntries[key] = value
     }
     return formEntries
   }
 
+  onSubmit() {
+    this.formElement.addEventListener("submit", (event) => {
+      event.preventDefault()
+      let formData = new FormData(this.formElement)
+      formData = this.getFormEntries(formData) 
+      console.log(formData.title)
+    })
+  }
 }
+
+class ModalHandler {
+  constructor(addBookButtonElement, dialogElement, cancelButtonElement) {
+    this.addBookButton = document.getElementById(addBookButtonElement)
+    this.dialogElement = document.getElementById(dialogElement)
+    this.cancelButton = document.getElementById(cancelButtonElement)
+  }
+
+  addBookListener() {
+    this.addBookButton.addEventListener("click", () => {
+      this.dialogElement.showModal()
+    })
+  }
+
+  cancelButtonListener() {
+    this.cancelButton.addEventListener("click", () => {
+      this.dialogElement.close()
+    })
+  }
+
+}
+
+const modal = new ModalHandler("add-book", "form-dialog", "cancel-form")
+modal.addBookListener()
+modal.cancelButtonListener()
+const formData = new FormHandler("book-form")
+formData.onSubmit()
+
+/* 
+
+(function addBookCancelButtonListeners() {
+  const addBookButton = document.getElementById("add-book")
+  const dialogElement = document.getElementById("form-dialog")
+  addBookButton.addEventListener("click", () => {
+    dialogElement.showModal()
+  })
+
+  const cancelButton = document.getElementById("cancel-form")
+  cancelButton.addEventListener("click", () => {
+    dialogElement.close()
+  })
+})()
+
+*/
+
 
 class BookFormHandler {
   constructor(formId) {
@@ -63,28 +116,6 @@ class BookFormHandler {
   }
 }
 
-class PageController {
-  constructor(library) {
-    this.library = library
-    this.addBookButton = document.getElementById("add-book")
-    this.cancelButton = document.getElementById("cancel-form")
-    this.dialog = document.getElementById("form-dialog")
-
-    this.addBookButton.addEventListener("click", () => {
-      dialog.showModal()
-    })
-
-    this.cancelButton.addEventListener("click", () => {
-      dialog.close()
-    })
-  }
-}
-
-const library = new Library()
-const PageController = PageController(library)
-
-const tableLibrary = document.querySelector(".table-library");
-const tableHeader = document.querySelector(".table-header");
 
 function displayLibrary() {
 
