@@ -60,7 +60,7 @@ class FormHandler {
 }
 
 class ModalHandler {
-  constructor(addBookButtonElement, dialogElement, cancelButtonElement, submitButtonElement) {
+  constructor(addBookButtonElement, dialogElement, cancelButtonElement) {
     this.addBookButton = document.getElementById(addBookButtonElement)
     this.dialogElement = document.getElementById(dialogElement)
     this.cancelButton = document.getElementById(cancelButtonElement)
@@ -80,7 +80,31 @@ class ModalHandler {
       this.dialogElement.close()
     })
   }
+}
 
+class LibraryDisplay {
+  constructor(libraryObj, libraryID) {
+    this.libraryObj = libraryObj
+    this.libraryElement = document.getElementById(libraryID)
+  }
+
+  createTableColumn() {
+    return document.createElement('td')
+  }
+
+  createBookData(book) {
+    const bookElement = {}
+    for (let [key, value] of book) {
+      const tData = this.createTableColumn()
+      tData.textContent = value
+      bookElement[key] = tData
+    }
+    const changeCol = createTableColumn().appendChild(
+      document.createElement('button')
+    )
+    changeCol.textContent = "Change"
+    bookElement["change"] = changeCol
+  }
 }
 
 const modal = new ModalHandler("add-book", "form-dialog", "cancel-form", "submit-form")
