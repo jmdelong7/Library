@@ -92,16 +92,15 @@ class LibraryDisplay {
     return document.createElement('td')
   }
 
-  
   createBookData(book) {
     const bookElements = {}
-    const removeCol = this.createTableColum().appendChild(
+    const removeCol = this.createTableColumn().appendChild(
       document.createElement('button')
     )
     removeCol.textContent = "Remove"
     bookElements["remove"] = removeCol
     
-    for (let [key, value] of book) {
+    for (let [key, value] of Object.entries(book)) {
       const tData = this.createTableColumn()
       tData.textContent = value
       bookElements[key] = tData
@@ -119,7 +118,7 @@ class LibraryDisplay {
   createTableRow(bookElements) {
     const tableRow = document.createElement('tr')
     Object.keys(bookElements).forEach( (key) => {
-      this.tableRow.appendChild(bookElement[key])
+      tableRow.appendChild(bookElements[key])
     })
     this.libraryElement.appendChild(tableRow)
   }
@@ -128,6 +127,7 @@ class LibraryDisplay {
 const modal = new ModalHandler("add-book", "form-dialog", "cancel-form", "submit-form")
 const library = new Library()
 const formData = new FormHandler("book-form", library)
+const libraryDisplay = new LibraryDisplay(library, "table-library")
 
 /* 
 
