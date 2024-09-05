@@ -94,11 +94,16 @@ class LibraryDisplay {
 
   createBookData(book) {
     const bookElements = {}
-    const removeCol = this.createTableColumn().appendChild(
-      document.createElement('button')
-    )
-    removeCol.textContent = "Remove"
+
+    const removeButton = document.createElement('button')
+    const removeCol = this.createTableColumn()
+    removeButton.textContent = "Remove"
+    removeButton.className = "remove-button"
+    removeCol.appendChild(removeButton)
     bookElements["remove"] = removeCol
+
+    const bookIdx = this.library.books.indexOf(book)
+    removeButton.addEventListener('click', this.library.removeBook(bookIdx))
     
     for (let [key, value] of Object.entries(book)) {
       const tData = this.createTableColumn()
@@ -106,10 +111,11 @@ class LibraryDisplay {
       bookElements[key] = tData
     }
     
-    const changeCol = this.createTableColumn().appendChild(
-      document.createElement('button')
-    )
-    changeCol.textContent = "Change"
+    const changeButton = document.createElement('button')
+    const changeCol = this.createTableColumn()
+    changeButton.textContent = "Change"
+    changeButton.className = "change-button"
+    changeCol.appendChild(changeButton)
     bookElements["change"] = changeCol
     
     return bookElements
@@ -122,6 +128,7 @@ class LibraryDisplay {
     })
     this.libraryElement.appendChild(tableRow)
   }
+
 }
 
 const modal = new ModalHandler("add-book", "form-dialog", "cancel-form", "submit-form")
