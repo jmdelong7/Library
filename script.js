@@ -62,3 +62,44 @@ class Library {
   }
 }
 
+class LibraryManager {
+  constructor(tableId, addBookId, cancelId, formId, dialogId) {
+    this.library = new Library(tableId)
+    this.formElement = document.getElementById(formId)
+    this.dialogElement = document.getElementById(dialogId)
+
+    this.initModal(addBookId, cancelId)
+    this.initSubmit()
+  }
+
+  initModal(addBookId, cancelId) {
+    const addBookButton = document.getElementById(addBookId)
+    const cancelButton = document.getElementById(cancelId)
+
+    addBookButton.onclick = () => this.dialogElement.showModal()
+    cancelButton.onclick = () => this.dialogElement.close()
+  }
+
+  initSubmit() {
+    this.formElement.onsubmit = (event) => {
+      event.preventDefault()
+      const formData = new FormData(this.formElement)
+      const bookData = [...formData.values()]
+      const book = new Book(...bookData)
+      this.library.addBook(book)
+      this.formElement.reset()
+      this.dialogElement.close()
+      this.library.refreshDisplay()
+    }
+  }
+}
+
+
+const library = new LibraryManager(
+  "table-library", 
+  "add-book", 
+  "cancel-form", 
+  "book-form", 
+  "form-dialog"
+)
+
