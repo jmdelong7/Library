@@ -34,12 +34,22 @@ class Library {
       cell.textContent = data
     }
 
-    row.insertCell()
-    row.insertCell(0)
+    const firstCell = row.insertCell()
+    const lastCell = row.insertCell(0)
+
+    this.addActionButton(lastCell, 
+      this.removeBook(this.books.indexOf(book)), 
+      "Remove")
   }
 
-  addActionButtons() {
+  addActionButton(row, action, buttonName) {
+    const button = document.createElement("button")
+    button.textContent = buttonName
+    row.appendChild(button)
 
+    button.addEventListener("click", () => {
+      action
+    })
   }
 
   displayLibrary() {
