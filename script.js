@@ -49,7 +49,15 @@ class Library {
 
     button.addEventListener("click", () => {
       action
+      this.refreshDisplay()
     })
+  }
+
+  refreshDisplay() {
+    const tableHeader = document.getElementById("table-header")
+    this.table.innerHTML = ''
+    this.table.appendChild(tableHeader)
+    this.books.forEach(book => this.displayBook(book))
   }
 
   displayLibrary() {
