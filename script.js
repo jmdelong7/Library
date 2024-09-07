@@ -54,14 +54,10 @@ class Library {
     })
   }
 
-  clearTable() {
+  refreshDisplay() {
     const tableHeader = document.getElementById("table-header")
     this.table.innerHTML = ''
     this.table.appendChild(tableHeader)
-  }
-  
-  refreshDisplay() {
-    this.clearTable()
     this.books.forEach(book => this.displayBook(book))
   }
 }
