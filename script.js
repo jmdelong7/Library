@@ -34,12 +34,13 @@ class Library {
       cell.textContent = data
     }
 
-    const firstCell = row.insertCell()
-    const lastCell = row.insertCell(0)
+    const firstCell = row.insertCell(0)
+    const lastCell = row.insertCell()
 
-    this.addActionButton(lastCell, 
-      this.removeBook(this.books.indexOf(book)), 
-      "Remove")
+    const bookIndex = this.books.indexOf(book)
+    this.addActionButton(firstCell, () => this.removeBook(bookIndex), "Remove")
+
+    this.addActionButton(lastCell, () => book.toggleRead(), "Change")
   }
 
   addActionButton(row, action, buttonName) {
@@ -48,28 +49,20 @@ class Library {
     row.appendChild(button)
 
     button.addEventListener("click", () => {
-      action
+      action()
       this.refreshDisplay()
     })
   }
 
-  refreshDisplay() {
+  clearTable() {
     const tableHeader = document.getElementById("table-header")
     this.table.innerHTML = ''
     this.table.appendChild(tableHeader)
-    this.books.forEach(book => this.displayBook(book))
   }
-
-  displayLibrary() {
-    this.books.forEach(book => {
-      const bookRow = this.table.insertRow()
-      
-      for(let [key, value] of Object.entries(book)) {
-        const cell = bookRow.insertCell()
-        cell.className = key
-        cell.textContent = value
-      }
-    })
+  
+  refreshDisplay() {
+    this.clearTable()
+    this.books.forEach(book => this.displayBook(book))
   }
 }
 
