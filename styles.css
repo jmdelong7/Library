@@ -25,16 +25,29 @@ body {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, figure, p, ol, ul {
+h1,
+h2,
+h3,
+h4,
+h5,
+figure,
+p,
+ol,
+ul {
   margin: 0;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
   padding-inline: 0;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -89,23 +102,25 @@ table {
   margin: 0.5rem;
 }
 
-.header-title, 
-.header-author, 
-.header-pages, 
+.header-title,
+.header-author,
+.header-pages,
 .header-pages {
   width: 150px;
 }
 
-.header-remove, .header-change {
+.header-remove,
+.header-change {
   width: 100px;
 }
 
-th, td {
+th,
+td {
   border: 1px solid black;
   padding: 5px;
 }
 
-dialog{
+dialog {
   border: none;
   border-radius: 5px;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.144);
@@ -121,10 +136,15 @@ form {
   padding: 15px;
 }
 
-form > :nth-child(-n+3) {
+form> :nth-child(-n+3) {
   display: grid;
   grid-template-columns: 60px 1fr;
   padding: 10px 0;
+}
+
+form> :nth-child(-n+3)> :last-child {
+  grid-column: 2/3;
+  text-align: left;
 }
 
 legend {
@@ -142,11 +162,15 @@ fieldset {
   padding: 0;
 }
 
-fieldset > div {
+fieldset>div {
   display: flex;
   align-items: center;
   justify-content: center;
   padding-left: 10px;
+}
+
+.read-error {
+  display: flex;
 }
 
 input[type="radio"] {
@@ -160,5 +184,3 @@ input[type="radio"] {
   align-items: center;
   margin-top: 10px;
 }
-
-
