@@ -29,7 +29,7 @@ class Library {
     const row = this.table.insertRow()
     const bookData = [book.title, book.author, book.numOfPages, book.hasRead]
 
-    for(let data of bookData) {
+    for (let data of bookData) {
       const cell = row.insertCell()
       cell.textContent = data
     }
@@ -94,12 +94,18 @@ class LibraryManager {
   }
 }
 
+function inputValidation(section, input) {
+  const error = section.lastElementChild;
+  if (input.checkValidity() === false && error.classList.contains('hidden')) {
+    error.classList.remove('hidden');
+  }
+}
 
 const library = new LibraryManager(
-  "table-library", 
-  "add-book", 
-  "cancel-form", 
-  "book-form", 
+  "table-library",
+  "add-book",
+  "cancel-form",
+  "book-form",
   "form-dialog"
 )
 
