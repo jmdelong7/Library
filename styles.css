@@ -142,9 +142,13 @@ form> :nth-child(-n+3) {
   padding: 10px 0;
 }
 
-form> :nth-child(-n+3)> :last-child {
+form>:nth-child(-n+3)>:last-child {
   grid-column: 2/3;
   text-align: left;
+  color: white;
+}
+
+form>:nth-child(-n+3)>:last-child.show {
   color: red;
 }
 
@@ -182,10 +186,6 @@ input[type="radio"] {
   margin-top: 10px;
 }
 
-input:invalid {
+/* input:invalid {
   border: 2px solid red
-}
-
-.hidden {
-  color: white;
-}
+} */

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <meta name="description" content="Books on books on books">
   <title>Library</title>
 </head>
+
 <body>
   <h1 class="page-title">Read yo damn books</h1>
 
@@ -30,19 +32,19 @@
       <div class="title-input">
         <label for="title" class="title">Title</label>
         <input id="title" name="title" type="text" required>
-        <div class="title-error hidden">A title is required.</div>
+        <div class="title-error">A title is required.</div>
       </div>
 
       <div class="author-input">
         <label for="author" class="author">Author</label>
         <input id="author" name="author" type="text" required>
-        <div class="title-error hidden">An author is required.</div>
+        <div class="title-error">An author is required.</div>
       </div>
 
       <div class="pages-input">
         <label for="pages" class="pages">Pages</label>
         <input id="pages" name="pages" type="number" required>
-        <div class="title-error hidden">Please use valid page numbers.</div>
+        <div class="title-error">Please use valid page numbers.</div>
       </div>
 
       <fieldset class="read-input">
@@ -56,20 +58,21 @@
           <label for="read-no">No</label>
           <input type="radio" name="read" id="read-no" value="false">
         </div>
-        
-        <div class="read-error hidden">Please select Yes or No.</div>
-        
+
+        <div class="read-error">Please select Yes or No.</div>
+
       </fieldset>
-      
+
 
       <div class="form-buttons">
         <button id="submit-form" type="submit">Add Book</button>
         <button id="cancel-form" type="button">Cancel</button>
-      </div>  
+      </div>
 
     </form>
   </dialog>
 
 </body>
 <script type="text/javascript" src="script.js"></script>
+
 </html>

@@ -70,17 +70,26 @@ class LibraryManager {
 
     this.initModal(addBookId, cancelId)
     this.initSubmit()
-  }
 
+  }
+  
   initModal(addBookId, cancelId) {
     const addBookButton = document.getElementById(addBookId)
     const cancelButton = document.getElementById(cancelId)
-
+    
     addBookButton.onclick = () => this.dialogElement.showModal()
     cancelButton.onclick = () => this.dialogElement.close()
+    
+    const addBookModalBtn = document.getElementById('submit-form');
+    addBookModalBtn.onclick = () => {
+      this.inputValidation();
+    }
   }
 
   initSubmit() {
+    this.addBookModalBtn.onclick = () => {
+      this.inputValidation();
+    }
     this.formElement.onsubmit = (event) => {
       event.preventDefault()
       const formData = new FormData(this.formElement)
@@ -92,13 +101,26 @@ class LibraryManager {
       this.library.refreshDisplay()
     }
   }
-}
 
-function inputValidation(section, input) {
-  const error = section.lastElementChild;
-  if (input.checkValidity() === false && error.classList.contains('hidden')) {
-    error.classList.remove('hidden');
+  inputValidation() {
+    const sections = [
+      document.querySelector('.title-input'),
+      document.querySelector('.author-input'),
+      document.querySelector('.pages-input')
+    ]
+
+    sections.forEach((section) => {
+      const input = section.querySelector('input');
+      const error = section.lastElementChild;
+      if (input.checkValidity() === false) {
+        error.classList.add('show');
+      };
+      if (input.checkValidity() === true) {
+        error.classList.remove('show');
+      };
+    })
   }
+
 }
 
 const library = new LibraryManager(
